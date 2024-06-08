@@ -1,7 +1,6 @@
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +9,6 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,57 +37,42 @@ body {
     gap: 1rem;
 }
 
-#bgColor {
+#bgColor, #penColor {
     width: 40px; 
     height: 40px; 
     border: none;
     padding: 0;
 }
-#penColor {
-    width: 40px; 
-    height: 40px;
-    border: none;
-    padding: 0;
+
+.tools, .shapes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    position: absolute;
+    border: 2px solid #000;
+    -webkit-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
+    -moz-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
+    box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
 }
 
 .tools {
-    width: 65vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    gap: 10px;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 2px solid #000;
-    -webkit-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-    -moz-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-    box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
+    left: 30%;
+    transform: translateX(-20%);
+    top: 5px;
+    padding: 10px;
+    
 }
 
 .shapes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    gap: 10px;
-    position: absolute;
     top: 50%;
     left: 10px;
+    flex-direction: column;
     transform: translateY(-50%);
-    border: 2px solid #000;
-    -webkit-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-    -moz-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-    box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
 }
 
 .option {
@@ -113,25 +96,13 @@ body {
     transition: color 0.3s;
 }
 
-.option.selected {
+.option.active {
     background: #5a64f9;
     color: #fff;
 }
 
-.option.selected img {
+.option.active img {
     filter: brightness(0) invert(1);
-}
-
-.colors .option {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    cursor: pointer;
-}
-
-.colors .option.selected {
-    border: 2px solid #000;
 }
 
 .board {
@@ -153,18 +124,11 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500;
     transition: all 0.3s;
 }
 
 button:hover {
     background: #3a45d1;
-}
-
-
-.optionss :active {
-    transform: scale(0.9);
-    color: #3a45d1;
-    
 }

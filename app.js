@@ -43,6 +43,13 @@ const drawShape = (e, shape) => {
             const radius = Math.sqrt(Math.pow((prevMouseX - e.offsetX), 2) + Math.pow((prevMouseY - e.offsetY), 2));
             ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
             break;
+        case 'ellipse':
+            const ellipseX = (prevMouseX + e.offsetX) / 2;
+            const ellipseY = (prevMouseY + e.offsetY) / 2;
+            const ellipseRadiusX = Math.abs(e.offsetX - prevMouseX) / 2;
+            const ellipseRadiusY = Math.abs(e.offsetY - prevMouseY) / 2;
+            ctx.ellipse(ellipseX, ellipseY, ellipseRadiusX, ellipseRadiusY, 0, 0, 2 * Math.PI);
+            break;
         case 'triangle':
             ctx.moveTo(prevMouseX + (e.offsetX - prevMouseX) / 2, prevMouseY);
             ctx.lineTo(prevMouseX, e.offsetY);
@@ -81,7 +88,7 @@ const startDraw = (e) => {
 
 const drawing = (e) => {
     if (!isDrawing) return;
-    ctx.globalCompositeOperation = selectedTool === 'eraser' ? 'source-over' : 'source-over'; // Change 'destination-out' to 'source-over' for the eraser
+    ctx.globalCompositeOperation = selectedTool === 'eraser' ? 'source-over' : 'source-over'; // No change to globalCompositeOperation
     switch (selectedTool) {
         case 'brush':
         case 'eraser':
@@ -91,6 +98,7 @@ const drawing = (e) => {
             break;
         case 'rectangle':
         case 'circle':
+        case 'ellipse':
         case 'triangle':
         case 'line':
         case 'arrow':
@@ -126,16 +134,10 @@ saveImg.addEventListener('click', () => {
     link.click();
 });
 
-
-
 changeBgButton.addEventListener('click', () => {
-    console.log('Change background color button clicked');
-    console.log('Selected background color:', bgColorPicker.value);
     bgColor = bgColorPicker.value;
-    
     setCanvasBackground();
 });
-
 
 canvas.addEventListener('mousedown', startDraw);
 canvas.addEventListener('mousemove', drawing);
