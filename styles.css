@@ -55,10 +55,11 @@ body {
     gap: 10px;
     position: absolute;
     border: 2px solid #000;
-    -webkit-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-    -moz-box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-    box-shadow: inset 10px 10px 62px -5px rgba(0,0,0,0.45);
-}
+    border-radius: 16px;
+background: linear-gradient(225deg, #cacaca, #f0f0f0);
+box-shadow:  -26px 26px 100px #d9d9d900,
+             26px -26px 100px #e7e7e700;
+    }
 
 .tools {
     left: 30%;
