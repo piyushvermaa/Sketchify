@@ -86,9 +86,19 @@ const startDraw = (e) => {
     snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
 }
 
+const startTouchDraw = (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    startDraw({
+        offsetX: touch.clientX - rect.left,
+        offsetY: touch.clientY - rect.top
+    });
+}
+
 const drawing = (e) => {
     if (!isDrawing) return;
-    ctx.globalCompositeOperation = selectedTool === 'eraser' ? 'source-over' : 'source-over'; // No change to globalCompositeOperation
+    ctx.globalCompositeOperation = selectedTool === 'eraser' ? 'destination-out' : 'source-over';
     switch (selectedTool) {
         case 'brush':
         case 'eraser':
@@ -105,6 +115,16 @@ const drawing = (e) => {
             drawShape(e, selectedTool);
             break;
     }
+}
+
+const touchDrawing = (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    drawing({
+        offsetX: touch.clientX - rect.left,
+        offsetY: touch.clientY - rect.top
+    });
 }
 
 toolBtns.forEach(btn => {
@@ -143,3 +163,8 @@ canvas.addEventListener('mousedown', startDraw);
 canvas.addEventListener('mousemove', drawing);
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false); // To stop drawing when mouse leaves canvas
+
+canvas.addEventListener('touchstart', startTouchDraw);
+canvas.addEventListener('touchmove', touchDrawing);
+canvas.addEventListener('touchend', () => isDrawing = false);
+canvas.addEventListener('touchcancel', () => isDrawing = false);
